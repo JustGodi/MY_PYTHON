@@ -1991,7 +1991,7 @@ txt = '1 23 456 xax'
 
         # Давайте найдем все числа и разместим их в круглые скобки. Для этого все найденные числа заменим на них самих же, но в скобках. А вместо двойного слеша используем команду r:
 
-res = re.sub(r'(\d+)', r'(\1)', txt)
+res = re.sub(r'(\\d+)', r'(\1)', txt)
 print(txt)
 print(res)
 '''
@@ -2002,7 +2002,7 @@ print(res)
 
 '''
 txt = 'ab cd ef'
-res = re.sub(r'(\w)(\w)', r'\2\1', txt)
+res = re.sub(r'(\\w)(\\w)', r'\2\1', txt)
 print(txt)
 print(res)
 '''
@@ -2013,7 +2013,7 @@ print(res)
 
 '''
 txt = '2025:12:31'
-res = re.sub(r'(\d+):(\d+):(\d+)', r'\3-\2-\1', txt)
+res = re.sub(r'(\\d+):(\\d+):(\\d+)', r'\3-\2-\1', txt)
 print(txt)
 print(res)
 '''
@@ -2032,7 +2032,7 @@ print(res)
 
 '''
 txt = '12 45 56 ab'
-res = re.findall(r'\d+', txt)
+res = re.findall(r'\\d+', txt)
 print(res)
 '''
 
@@ -2042,7 +2042,7 @@ print(res)
 
 '''
 txt = '123 aaa 456 bbb 789'
-res = re.findall(r'\d+', txt)
+res = re.findall(r'\\d+', txt)
 print(res)
 '''
 
@@ -2068,16 +2068,142 @@ txt = '12 43 56 ab'
 
         # Давайте найдем все пары чисел и разложим их по карманам:
 
-res = re.findall(r'(\d)(\d)', txt)
+res = re.findall(r'(\\d)(\\d)', txt)
 print(res)
 '''
 
+    # 1
 
+# Дана следующая строка: txt = '12:37 15:48 17:59'; Найдите в ней все подстроки с временем и для каждого найденного разложите часы и минуты по карманам.
 
+'''
+txt = '12:37 15:48 17:59'
+res = re.findall(r'(\\d)(\\d)', txt)
+print(res)
+'''
 
+    # 2
 
+# Дана строка: txt = 'site.ru sss site.com zzz site.net'; Получите доменные имена из этой строки, положив имя домена и его зону в разные карманы.
 
+'''
+txt = 'site.ru sss site.com zzz site.net'
+res = re.findall(r'(\\w+).(\\w+)', txt)
+print(res)
+'''
 
+            # 62
+
+            # Метод finditer в регулярных выражениях Python
+
+        # Метод finditer предназначен для получения итератора всех совпадений с регуляркой в строке. В первом параметре метода указываем регулярку, которую будем искать, во втором параметре - строку, которой ищем. Метод проверяет все совпадения, ища их слева направо. Метод возвращает итератор объектов сопоставления. Синтаксис метод finditer выглядит так:
+
+# re.finditer(что искать, где искать)
+
+        # Давайте найдем все подстроки с цифрами в нашей строке:
+
+"""
+txt = 'aaaa 123 bbbb 456'
+res = re.finditer('\\d+', txt)
+print(res)
+
+# Результат выполнения кода:
+# <callable_iterator object at 0x000002AA891300A0>
+'''
+for el in res:
+    print(el)
+'''
+# После выполнения кода выведется два match-объекта:
+# <re.Match object; span=(5, 8), match='123'>
+# <re.Match object; span=(14, 17), match='456'>
+
+# Данные объекты содержат информацию о всех совпадениях с регуляркой в виде кортежа. Можно вывести из них совпадения по индексу:
+
+for el in res:
+    print(el[0])
+"""
+
+    # 1
+
+# Дана строка: txt = '12 aaa 34 bbb 56 ccc' Выведите из нее все числа с помощью цикла.
+
+'''
+txt = '12 aaa 34 bbb 56 ccc'
+res = re.finditer('(\\d+)', txt)
+lst = []
+for el in res:
+    lst.append(el[0])
+print(lst)
+'''
+
+            # 63
+
+            # Карманы в методе finditer Python
+
+        # В методе finditer также можно использовать карманы. Давайте посмотрим на практике. Пусть у нас есть строка:
+
+'''
+txt = 'aaaa 123 bbbb 456'
+
+        # Давайте разместим все цифры, которые находятся в строке, по карманам. А при переборе объектов циклом выведем первое совпадение (оно будет считаться нулевым карманом), а также его элементы, тоже в свою очередь раскиданные по карманам:
+
+res = re.finditer('(\\d)(\\d)', txt)
+lst = []
+for el in res:
+    lst.append(el[0])
+    lst.append(el[1])
+    lst.append(el[2])
+print(lst)
+'''
+
+    # 1
+
+# Дана строка: txt = 'aaa 123 bbb 456 987' Раскидайте все подстроки с числами по трем карманам. И выведите их с помощью цикла.
+
+'''
+txt = 'aaa 123 bbb 456 987'
+res = re.finditer('(\\d)(\\d)(\\d)', txt)
+lst = []
+for el in res:
+    lst.append(el[0])
+    lst.append(el[1])
+    lst.append(el[2])
+    lst.append(el[3])
+print(lst)
+'''
+
+            # 64
+
+            # Именованные карманы в методе finditer в Python
+
+        # При применении метода finditer можно использовать именованные карманы:
+
+'''
+txt = 'aaaa 123 bbbb 456'
+res = re.finditer('(?P<test1>\\d)(?P<test2>\\d)', txt)
+lst = []
+for el in res:
+    lst.append(el[0])
+    lst.append(el['test1'])
+    lst.append(el['test2'])
+print(lst)
+'''
+
+    # 1
+
+# Дана строка: txt = '456 aaa 123 b2bb 987' Найдите все подстроки, содержащие только цифры, и раскиньте их по двум именованным карманам. Выведите их с помощью цикла.
+
+'''
+txt = '456 aaa 123 b2bb 987'
+res = re.finditer('(?P<num1>\\d)(?P<num2>\\d)(?P<num3>\\d)', txt)
+lst = []
+for el in res:
+    lst.append(el[0])
+    lst.append(el['num1'])
+    lst.append(el['num2'])
+    lst.append(el['num3'])
+print(lst)
+'''
 
 
 
