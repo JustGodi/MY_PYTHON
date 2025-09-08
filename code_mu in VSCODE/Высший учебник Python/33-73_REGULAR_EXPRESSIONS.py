@@ -2582,10 +2582,21 @@ print(res2)
 
 # Дана строка с тегом: txt = '<a href="" class="eee" id="zzz">' Получите массив имен атрибутов этого тега.
 
-
+'''
 txt = '<a href="" class="eee" id="zzz">'
 res = re.findall('[a-zA-Zа-яА-ЯёЁ]+="\\w*"', txt)
 print(res)
+'''
+
+    # 3
+
+# Дана строка с переменными: txt = '$aaa $bbb $ccc xxxx' Получите подстроки, перед которыми стоит символ доллара.
+
+
+txt = '$aaa $bbb $ccc xxxx'
+res = re.findall('(?<=$)\\w+', txt)
+print(res)
+
 
 
 
