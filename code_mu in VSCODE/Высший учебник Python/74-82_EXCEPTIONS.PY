@@ -112,20 +112,51 @@ except ValueError:
 
 # Дан список. Спросите у пользователя целое число. Получите элемент списка, номер которого ввел пользователь. Поймайте исключительную ситуацию, которая случится, если пользователь ввел число вне диапазона списка.
 
-
-lst = list(range(random.randint(1, 5), random.randint(6, 10)))
 '''
+lst = list(range(random.randint(1, 5), random.randint(6, 10)))
+
 def number_of_list_element(lst: list):
     a = input('введите номер элемента который хотите вывести: ')
-    return print(lst[a])
-'''
-print(lst)
+    return print(lst[int(a)])
+
+#print(lst)
 #number_of_list_element(lst)
-print(lst[15])
+#print(lst[a])
+
+try:
+    number_of_list_element(lst)
+except IndexError:
+    print('Элемента с заданым индексом не существует')
+except ValueError:
+    print('Введено некорректное значение')
+except NameError:
+    print('Введено некорректное значение')
+'''
+
+    # 4
+
+# Дан следующий код: num = '5' res = num + 2 print(res) Что не так с этим кодом? Исправьте его недостатки.
+
+'''
+num = '5'
+try:
+    res = num + 2
+except TypeError:
+    print('Нельзя складывать строки с числами')
+'''
+
+    # 5
 
 
+lst = [1, 2, 3, 4]
 
+def getElem(iter):
+    print(iter[4])
 
+try:
+    getElem(lst)
+except IndexError:
+    print('Элемента с данным индексом не существует')
 
 
 
