@@ -459,6 +459,7 @@ except ToBigLenght:
     print('error: list is too big')
 '''
 
+<<<<<<< HEAD
 import sys
 
 def main():
@@ -467,6 +468,8 @@ def main():
     print(type(n))
 
 main()
+=======
+>>>>>>> 01736f0102608a8d2d8b09cc68017ecd3aca045c
 
 
 
