@@ -1,8 +1,16 @@
-import sys
-
+'''
 def main():
     n = input()
-    print(n)
-    print(type(n))
+    n = n.split(' ')
+    n = list(map(int, n))
+    n.sort()
+    return n[1]
+'''
 
-main()
+def main():
+    n = list(map(int, input().split(' ')))
+    n.sort()
+    return n[1]
+
+
+print(main())
