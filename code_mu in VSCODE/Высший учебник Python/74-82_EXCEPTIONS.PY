@@ -446,7 +446,7 @@ try:
     else:
         raise ToBigLenght
 except ToBigLenght:
-    print('error: list is too big')
+    print('ToBigLenghtError: list is too big')
 
 lst_2 = [1, 2, 3, 4]
 
@@ -458,6 +458,143 @@ try:
 except ToBigLenght:
     print('error: list is too big')
 '''
+
+    # 1
+
+# Напишите условие, если число положительное, то пусть оно возводится в квадрат. Если число отрицательное - пусть выбрасывается исключение, созданное вами для предыдущего урока.
+
+'''
+class NegativeNumber(Exception):
+    pass
+
+class ZeroNumber(Exception):
+    pass
+
+
+#print(f'Square of num {num} is:' + ' ' num**2)
+
+try:
+    num = int(input('Введите положительное число '))
+    if num > 0:
+        print(f'Square of num {num} is: {num**2}')
+    elif num == 0:
+        raise ZeroNumber
+    else:
+        raise NegativeNumber
+except NegativeNumber:
+    print('NegativeNumberError: num is negative')
+except ZeroNumber:
+    print('ZeroNumberError: zero is zero')
+except ValueError:
+    print('ValueError: incorrect value type: letter')
+'''
+
+    # 2
+
+# Напишите условие, если число не равно нулю, то к нему прибавляется 5. В противном случае пусть выбрасывается исключение, созданное вами для предыдущего урока
+
+'''
+class ZeroNumber(Exception):
+    pass
+
+
+try:
+    num = int(input('Введите положительное число '))
+    if num != 0:
+        num = num + 5
+        print(num)
+    else:
+        raise ZeroNumber
+except:
+    print('ZeroNumberError: zero is zero')
+'''
+
+            # 82
+
+            # Функция с исключением в Python
+
+        # Исключения очень удобно выбрасывать, прописывая их в функции с помощью условий.
+
+        # Давайте сделаем функцию get_sum, которая будет выводить сумму элементов списка только, если длина списка меньше или равна 3. В противном случае, пусть выбрасывается наше исключение ToBigLength:
+
+'''
+class ToBigLenght(Exception):
+    pass
+
+def get_sum(lst: list):
+    if len(lst) <= 3:
+        return sum(lst)
+    else:
+        raise ToBigLenght
+
+        # Теперь передадим в функцию get_sum список и выведем функцию в консоль:
+
+lst = [1, 2, 3, 4]
+print(get_sum(lst)) # console: ToBigLenght
+'''
+        # Также в функциях можно задавать перехват нескольких типов исключений. Давайте создадим еще один класс исключений ToSmallLength:
+'''
+class ToBigLenght(Exception):
+    pass
+class ToSmallLenght(Exception):
+    pass
+
+        # Теперь пропишем в функции условие, если длина списка равна нулю, то пусть выбросится ToSmallLength. Если же не перехватится ни одно исключение, то пусть выведется сумма всех элементов списка:
+
+def get_sum(lst: list):
+    if len(lst) > 3:
+        raise ToBigLenght
+    if len(lst) == 0:
+        raise ToSmallLenght
+    else:
+        return(sum(lst))
+
+        # Для удобства можно заключить список, который будет передаваться в параметр функции, саму функцию и ее вызов в блок try. А перехват наших двух исключений разместим в блоках except:
+
+lst_1 = [1, 2, 3]
+lst_2 = list(range(4))
+lst_3 = []
+try:
+    print(get_sum(lst_3))
+except ToBigLenght:
+    print('ToBigLEnghtError: list is too big')
+except ToSmallLenght:
+    print('ToSmallLenghtError: list is empty')
+'''
+
+    # 1
+
+# Создайте функцию, которая параметром будет принимать число. В ней пропишите условия, если число отрицательное и равно нулю, то пусть выбросятся соответствующие исключения. в противном случае пусть число будет умножено на 3.
+
+'''
+class LessOrEqualZero(Exception):
+    pass
+
+
+def num_more_than_zero():
+    num = int(input('Введите число больше нуля '))
+    if num <= 0:
+        raise LessOrEqualZero
+    else:
+        num = num * 3
+        return num
+
+try:
+    print(num_more_than_zero())
+except LessOrEqualZero:
+    print('LessOrEqualZeroError: Num is less or equal zero')
+except ValueError:
+    print('Incorrect input: let is not num')
+'''
+
+    # 2
+
+# Проверьте работу созданную вами функции с помощью конструкции try-except. При этом также перехватите ваши исключения.
+
+# уже
+
+
+
 
 
 

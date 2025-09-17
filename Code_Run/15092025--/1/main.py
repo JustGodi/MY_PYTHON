@@ -29,20 +29,38 @@ def n():
 
 
     if n[0] < n[1]:
-        del n[0]
-        return n[0]
+        x = n[1]
+        return int(x)
     elif n[1] < n[0]:
-        del n[1]
-        return n[0]
-    print(n)
+        x = n[0]
+        return int(x)
 
 print(n())
 '''
 
 
-def n():
-    n = list(map(int, input().split(' ')))
+def find_avarage():
+    list_of_nums = list(map(int, input().split(' ')))
 
+
+    max_num = float('-inf')
+    for num in list_of_nums:
+        if num > max_num:
+            max_num = num
+
+    min_num = float('+inf')
+    for num in list_of_nums:
+        if num < min_num:
+            min_num = num
+
+    for num in list_of_nums:
+        if min_num < num < max_num:
+            return num
+        else:
+            continue
+
+
+print(find_avarage())
 
 
 
