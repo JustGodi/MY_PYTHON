@@ -1,10 +1,17 @@
 '''
 def main():
     n = input()
+    print(n)
+    print(type(n))
     n = n.split(' ')
+    print(n)
+    print(type(n))
     n = list(map(int, n))
+    print(n)
+    print(type(n))
     n.sort()
     return n[1]
+print(main())
 '''
 '''
 def n_logn():
@@ -38,7 +45,7 @@ def n():
 print(n())
 '''
 
-
+'''
 def find_avarage():
     list_of_nums = list(map(int, input().split(' ')))
 
@@ -61,7 +68,7 @@ def find_avarage():
 
 
 print(find_avarage())
-
+'''
 
 
 
