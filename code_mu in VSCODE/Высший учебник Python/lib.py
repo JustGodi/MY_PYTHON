@@ -9,3 +9,6 @@ def func2():
 
 def func3():
     print(3)
+
+def _func4():
+    print(4)

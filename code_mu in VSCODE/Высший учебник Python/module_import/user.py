@@ -1,3 +1,7 @@
 name = 'user1'
-email = 'user1@mail.com'
-password = 'qwerty'
+
+# добавил нижнее подчеркивание для задания 3 темы 86
+_email = 'user1@mail.com'
+
+# добавил нижнее подчеркивание для задания 3 темы 86
+_password = 'qwerty'
