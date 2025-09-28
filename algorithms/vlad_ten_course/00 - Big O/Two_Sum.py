@@ -52,8 +52,8 @@ def twoSum(nums: list, target: int) -> list:
             return list_of_indexes
 '''
 
-
+'''
 lst = [1,2,3]
 target = 9
 
-print(twoSum(lst, target))
+print(twoSum(lst, target))'''
