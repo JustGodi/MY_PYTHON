@@ -12,13 +12,13 @@
 """
 
 # четвёртая попытка, пытаюсь решить проблему из третьей попытки
-def twoSum(nums: list, target: int) -> list:
+'''def twoSum(nums: list, target: int) -> list:
     list_of_indexes = []
     for i in range(0, len(nums) - 1):
         if (nums[i] + nums[i+1]) == target:
             list_of_indexes.append(i)
             list_of_indexes.append(i+1)
-    if not list_of_indexes:
+    if not list_of_indexes:'''
         # теперь если первй цикл не выполнился будет выполнятся второй, который должен взять первый элеент и проверить его сложение со всеми элементами, если сумма не будет найдена, то он должен взять второй элемент и сложить его со всеми из списка и так до конца списка
 
 
