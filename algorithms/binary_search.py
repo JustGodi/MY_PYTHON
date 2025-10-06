@@ -6,7 +6,7 @@ def binary_search(lst, item):
         mid = (low + high) // 2 # -> проверяем средний элемент
         guess = lst[mid] # -> проверяем средний элемент
         if guess == item: # если значение найлено
-            return mid № вернуть это знаение
+            return mid # вернуть это знаение
         elif guess > item: # если значение больше искомого
             high = mid - 1 # верхняя граница становится на одно меньше от среднего
         else: # если значение меньше искомого
@@ -16,4 +16,4 @@ def binary_search(lst, item):
 lst = list(range(1, 100))
 
 item = 99
-print(binary_search(lst, item))
+print(binary_search(lst, item), lst[binary_search(lst, item)]) # возвращает индекс искомого элемента
