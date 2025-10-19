@@ -30,3 +30,51 @@
 # Вывод
 
 # 2
+
+
+
+
+
+
+# решатеся бинарным поиском который входит в стандартную библиотеку python
+
+
+from bisect import bisect_right # это бинарный поиск встроеный в пайтон. Найти последний не больший
+
+n = int(input()) # 
+intervals = [] # 
+
+for i in range(n): # проходимся по интервалам
+    b, e, w = map(float, input().split()) # 
+    intervals.append((e, b, w)) # 
+intervals.sort() # отсортировал по концу
+dp = [0] * (n + 1) # создал список dp
+
+for i in range(1, n + 1): # иду по интералам
+    e, b, w = intervals[i - 1] # 
+    prev = bisect_right(intervals, (b, e, w)) # 
+    dp[i] = max(dp[i - 1], dp[prev] + w) # 
+print(dp[n])
+
+
+
+
+# не забыть про импорт
+'''
+def main():
+    n = int(input())
+    intervals = []
+
+    for i in range(n):
+        b, e, w = map(float, input().split())
+        intervals.append((e, b, w))
+
+    intervals.sort()
+    dp = [0] * (n + 1)
+
+    for i in range(1, n + 1):
+        e, b, w = intervals[i - 1]
+        prev = bisect_right(intervals, (b, e, w))
+        dp[i] = max(dp[i - 1], dp[prev] + w)
+    print(dp[n])
+'''

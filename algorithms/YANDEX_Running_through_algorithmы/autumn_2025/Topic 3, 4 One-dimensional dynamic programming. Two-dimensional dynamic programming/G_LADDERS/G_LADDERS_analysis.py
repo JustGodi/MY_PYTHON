@@ -37,3 +37,54 @@
 # Вывод
 
 # 2
+
+
+
+n = int(input()) # 
+dp = [[0] * (n + 1) for _ in range(n + 1)] # двумерный массив?????
+
+for i in range(1, n + 1): # инициализация диагонали
+    dp[i][i] = 1 # есть лесенка и все i кубики лежат в нижнем слое 
+
+for total in range(2, n + 1): # пробегаюсь по тотал - это общее количество кубиков
+    for on_lower in range(1, total + 1): # сколько лежит кубиков на нижнем слое, от одного до тотал + 1
+        for on_second in range(min(on_lower, total - on_lower + 1)): # сколько перебираю на втором слое лежит нельзя класть больше чем на первом слое и нельз больше чем всего кубиков
+            dp[total][on_lower] += dp[total - on_lower][on_second] # всё суммирую
+
+ans = 0 # 
+
+for on_lower in range(1, n + 1): # перебираю все возможное количество кубиков на нижнем слое для своих n кубиков 
+    ans += dp[n][on_lower] #  и суммирую их
+
+print(ans) # 
+
+
+
+'''
+def main():
+    n = int(input())
+    dp = [[0] * (n + 1) for _ in range(n + 1)]
+
+    for i in range(1, n + 1):
+        dp[i][i] = 1
+
+    for total in range(2, n + 1):
+        for on_lower in range(1, total + 1):
+            for on_second in range(min(on_lower, total - on_lower + 1)):
+                dp[total][on_lower] += dp[total - on_lower][on_second]
+
+    ans = 0
+
+    for on_lower in range(1, n + 1):
+        ans += dp[n][on_lower]
+
+    print(ans)
+'''
+
+
+
+
+
+ 
+
+

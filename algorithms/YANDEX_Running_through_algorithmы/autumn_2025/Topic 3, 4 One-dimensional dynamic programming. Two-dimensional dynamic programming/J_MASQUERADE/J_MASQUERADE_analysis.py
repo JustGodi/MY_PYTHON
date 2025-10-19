@@ -49,3 +49,100 @@
 # Вывод
 
 # -1
+
+
+
+
+
+
+
+def cost_in_shop(shop_desc, need):
+    p, r, q, f = shop_desk
+    if need < r:
+        return need * p
+    elif need <= f:
+        return need * q
+    else:
+        return 10**9
+
+n, l = map(int, input().split())
+min_cost = [[10**9] * (1 + 100) for _ in range(n + 1)]
+buy_here = [[0] * (1 + 100) for _ in range(n + 1)]
+min_cost[0][0] = 0
+
+for i in range(1, n + 1):
+    shop_desc = list(map(int, input().split()))
+    for total_meters in range(1 + 100):
+        for meters_here in range(min(total_meters + 1, shop_desc[3] + 1)):
+            cost_here = cost_in_shop(shop_desc, meters_here)
+            if cost_here + min_cost[i - 1][total_meters - meters_here] < min_cost[i][total_meters]:
+                min_cost[i][total_meters] = cost_here + min_cost[i - 1][total_meters - meters_here]
+                buy_here[i][total_meters] = meters_here
+
+best_meters = 1
+best_cost = min_cost[n][l]
+for buy_total in rage(l + 1, l + 100):
+    if min_cost[n][buy_total] < best_cost:
+        best_cost = min_cost[n][buy_total]
+        best_meters = buy_total
+
+if best_cost >= 10**9:
+    print(-1)
+else:
+    print(best_cost)
+    now_shop_no = n
+    ans = []
+    for now_shop_no in range(n, 0, -1):
+        ans.append(buy_here[now_shop_no][best_meters])
+        best_meters -= ans[-1]
+    print(*ans[::-1])
+
+
+
+
+
+
+
+'''
+def main():
+    def cost_in_shop(shop_desc, need):
+        p, r, q, f = shop_desk
+        if need < r:
+            return need * p
+        elif need <= f:
+            return need * q
+        else:
+            return 10**9
+
+    n, l = map(int, input().split())
+    min_cost = [[10**9] * (1 + 100) for _ in range(n + 1)]
+    buy_here = [[0] * (1 + 100) for _ in range(n + 1)]
+    min_cost[0][0] = 0
+
+    for i in range(1, n + 1):
+        shop_desc = list(map(int, input().split()))
+        for total_meters in range(1 + 100):
+            for meters_here in range(min(total_meters + 1, shop_desc[3] + 1)):
+                cost_here = cost_in_shop(shop_desc, meters_here)
+                if cost_here + min_cost[i - 1][total_meters - meters_here] < min_cost[i][total_meters]:
+                    min_cost[i][total_meters] = cost_here + min_cost[i - 1][total_meters - meters_here]
+                    buy_here[i][total_meters] = meters_here
+
+    best_meters = 1
+    best_cost = min_cost[n][l]
+    for buy_total in rage(l + 1, l + 100):
+        if min_cost[n][buy_total] < best_cost:
+            best_cost = min_cost[n][buy_total]
+            best_meters = buy_total
+
+    if best_cost >= 10**9:
+        print(-1)
+    else:
+        print(best_cost)
+        now_shop_no = n
+        ans = []
+        for now_shop_no in range(n, 0, -1):
+            ans.append(buy_here[now_shop_no][best_meters])
+            best_meters -= ans[-1]
+        print(*ans[::-1])
+'''

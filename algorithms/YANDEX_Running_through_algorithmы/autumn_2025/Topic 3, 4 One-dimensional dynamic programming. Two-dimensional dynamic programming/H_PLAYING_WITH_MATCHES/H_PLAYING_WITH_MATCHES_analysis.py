@@ -46,3 +46,67 @@
 # Вывод
 
 # 2
+
+
+
+
+
+
+
+def is_prime(n): # проверка числа на простоту
+    k = 2 # 
+    while k * k <= n: # поиск делителя до корня
+        if n % k == 0: # 
+            return False # как только нахожу делитьель то говорю что всё фолз
+        k += 1 # 
+    return True # когда не нахожу делитель говорю тру, потому что если у числа есть делители то есть и делитель не превышающий квадратный корень из числа
+
+n = int(input()) # 
+prime = [False] * (n + 1) # создал массив в котором помечены простые числа 
+for i in range(2, n + 1): # прошёлся по всем числам 
+    prime[i] = is_prime(i) # поставил пометки
+
+win = [False] * (n + 1) # создал массив "выйгрышна ли ситуация"
+for now in range(1, n + 1): # пробегаюсь по позиции(now)
+    for turn in range(1, min(4, now + 1)): # смотрю на ход, цикл не выходит за пределы массива благодаря min()
+        prev = now - turn # смотрю что было у предыдущего игрока
+        if not prime[prev] and not win[prev]: # если там было не простое число и он не выйгрл
+            win[now] = True # значит я могу выйграть
+
+if win[n]: # 
+    print(1) # 
+else: # 
+    print(2) # 
+
+
+
+
+
+
+'''
+def main():
+    def is_prime(n):
+        k = 2
+        while k * k <= n:
+            if n % k == 0:
+                return False
+            k += 1
+        return True
+
+    n = int(input())
+    prime = [False] * (n + 1)
+    for i in range(2, n + 1):
+        prime[i] = is_prime(i)
+
+    win = [False] * (n + 1)
+    for now in range(1, n + 1):
+        for turn in range(1, min(4, now + 1)):
+            prev = now - turn
+            if not prime[prev] and not win[prev]:
+                win[now] = True
+
+    if win[n]:
+        print(1)
+    else:
+        print(2)
+'''

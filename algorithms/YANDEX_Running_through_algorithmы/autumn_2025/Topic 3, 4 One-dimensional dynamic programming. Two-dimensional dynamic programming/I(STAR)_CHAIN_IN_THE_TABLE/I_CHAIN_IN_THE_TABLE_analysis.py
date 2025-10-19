@@ -56,3 +56,59 @@
 
 
 
+# py py
+
+n, m = map(int, input().split()) # 
+nums = [[-1] * (m + 2) for _ in range(n + 2)] # делаю массив заполненный мину единицами, для создан              ьера из минус единиц
+max_len = [[1] * (m + 2) for _ in range(n + 2)] # макс лен это моя динамика, заполненая единицами, единица потому что одно число образет цепочку длиной один 
+sorted_nums = [] # отсортированые номера вместе с координатами клетки
+
+for i in range(1, n + 1): # считываю строку
+    row = list(map(int, input().split())) # кладу её в табличку 
+    for j in range(m): # 
+        nums[i][j + 1] = row[j] # 
+        sorted_nums.append((row[j], i, j + 1)) # и добавляю тройку чисел: знаение и координаты
+sorted_nums.sort() # сортирую всё по возрастанию чисел записаных 
+di = [-1, 0, 1, 0] # массив сдвига чтобы ыбстро искать соседа
+dj = [0, -1, 0, 1] # массив сдвига чтобы ыбстро искать соседа
+ans = 0 # 
+for num, i, j in sorted_nums: # перебираю всю тройку чисел
+    for dest in range(4): # перебираю 4х соседей 
+        neig_i = i + di[dest] # смотрю на и координату соседа
+        neig_j = j + dj[dest] #  смотрю на жи координату соседа
+        if num == nums[neig_i][neig_j] + 1: # если моё число в ячейке ровно на оди больше чем записано в соседе 
+            max_len[i][j] = max(max_len[i][j], max_len[neig_i][neig_j] + 1) # обнавляю макс лен 
+    ans = max(ans, max_len[i][j]) # 
+print(ans) # 
+
+
+
+
+
+
+
+'''
+def main():
+    n, m = map(int, input().split())
+    nums = [[-1] * (m + 2) for _ in range(n + 2)]
+    max_len = [[1] * (m + 2) for _ in range(n + 2)]
+    sorted_nums = []
+
+    for i in range(1, n + 1):
+        row = list(map(int, input().split()))
+        for j in range(m):
+            nums[i][j + 1] = row[j]
+            sorted_nums.append((row[j], i, j + 1))
+    sorted_nums.sort()
+    di = [-1, 0, 1, 0]
+    dj = [0, -1, 0, 1]
+    ans = 0
+    for num, i, j in sorted_nums:
+        for dest in range(4):
+            neig_i = i + di[dest]
+            neig_j = j + dj[dest]
+            if num == nums[neig_i][neig_j] + 1:
+                max_len[i][j] = max(max_len[i][j], max_len[neig_i][neig_j] + 1)
+        ans = max(ans, max_len[i][j])
+    print(ans)
+'''

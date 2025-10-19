@@ -78,3 +78,70 @@ if __name__ == '__main__':
 
     print(main(string, word_list))
 '''
+
+
+
+s = '#' + input() # добавлена решётка чтобы нумерация начиналась с единицы
+s_len = len(s) # 
+poss_end = [False] * s_len # массив может ли здесь закончится строка тру или фолз
+prev_word = [''] * s_len # список дл хранения слов которые совпали
+poss_end[0] = True # инициализация, начальный/базовый элемент, который совпадает с решёткой
+words = set() #
+n = int(input()) # 
+max_len = 0 # 
+
+for i in range(n): # 
+    word = input() # 
+    max_len = max(max_len, len(word)) # посчитал максимальную длину слова
+    words.add(word) # добавил в множество
+
+
+for i in range(1, s_len): # иду по всем позициям строки начиная с единицы
+    for j in range(min(max_len, i)): # смотрюсколько последних сиволов нужно взять, если я рассматриваю подстроку из трёх букв, то нет смысла искать 4 буквы в строке
+        if poss_end[i - j - 1] and s[i - j:i + 1] in words: # если можно закончить в токе(poss_end), т.е. поствить туда тру что означает что слово совпадает, и слово(подстрока/срез) содержится в множестве
+            poss_end[i] = True # то можно поставить тру 
+            prev_word[i] = s[i - j:i + 1] # и предыдущее слово ровняется тому что мы вырезали  
+            break # цикл находит первое попавшееся и выходит
+
+now = s_len - 1 # запоминаю позиуию из которой я буду восстанавливать
+ans = [] # список для слов
+while now > 0: # пока позиция больше нуля
+    ans.append(prev_word[now]) # я добавляю слово, которое хранится в prev_word, 
+    now -= len(prev_word[now]) # из текущей позиции вычитаю длину слова
+print(*ans[::-1]) # ответ вывожу задам напеёд
+
+
+
+
+
+'''
+def main():
+    s = '#' + input()
+    s_len = len(s)
+    poss_end = [False] * s_len
+    prev_word = [''] * s_len
+    poss_end[0] = True
+    words = set()
+    n = int(input())
+    max_len = 0
+
+    for i in range(n):
+        word = input()
+        max_len = max(max_len, len(word))
+        words.add(word)
+
+
+    for i in range(1, s_len):
+        for j in range(min(max_len, i)):
+            if poss_end[i - j - 1] and s[i - j:i + 1] in words:
+                poss_end[i] = True
+                prev_word[i] = s[i - j:i + 1]
+                break
+
+    now = s_len - 1
+    ans = []
+    while now > 0:
+        ans.append(prev_word[now])
+        now -= len(prev_word[now])
+    print(*ans[::-1])
+'''

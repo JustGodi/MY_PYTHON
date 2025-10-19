@@ -59,3 +59,70 @@
 
 # 2
 # 2 6
+
+
+n, k = map(int, input().split()) # 
+a = [0] + list(map(int, input().split())) # 
+dp = [0] * (n + 1) # 
+tower_end = [False] * (n + 1) # последняя башня которая означате что я либо сформировал башню в позиуции либо сформировал
+
+for i in range(k, n + 1): # начинаяю с к-ой позиции, т.к. нельзя посчитать числа до к
+    min_col = 10**9 # минимальны столбец
+    sum_col = 0 # сумма столбцов
+
+    for j in range(k): # цикл который считает минимальный столбец и сумма столбцов
+        min_col = min(min_col, a[i - j]) # 
+        sum_col += a[i - j] # 
+    if dp[i - k] + sum_col * min_col > dp[i - 1]: # решаю что делать дальше, либо делаю башню, для этого считаю сумму(sum_col * min_col) прибаляю к dp[i - k], 
+        dp[i] = dp[i - k] + sum_col * min_col # 
+        tower_end[i] = True # 
+    else: # 
+        dp[i] = dp[i - 1] # 
+
+ans = [] # 
+now_pos = n # 
+
+while now_pos > 0: # 
+    if tower_end[now_pos]: # 
+        ans.append(now_pos - k + 1) # 
+        now_pos -= k # 
+    else: # 
+        now_pos -= 1 # 
+print(len(ans)) # 
+print(*ans[::-1]) # 
+
+
+
+
+'''
+def main():
+    n, k = map(int, input().split())
+    a = [0] + list(map(int, input().split()))
+    dp = [0] * (n + 1)
+    tower_end = [False] * (n + 1)
+
+    for i in range(k, n + 1):
+        min_col = 10**9
+        sum_col = 0
+
+        for j in range(k):
+            min_col = min(min_col, a[i - j])
+            sum_col += a[i - j]
+        if dp[i - k] + sum_col * min_col > dp[i - 1]:
+            dp[i] = dp[i - k] + sum_col * min_col
+            tower_end[i] = True
+        else:
+            dp[i] = dp[i - 1]
+
+    ans = []
+    now_pos = n
+
+    while now_pos > 0:
+        if tower_end[now_pos]:
+            ans.append(now_pos - k + 1)
+            now_pos -= k
+        else:
+            now_pos -= 1
+    print(len(ans))
+    print(*ans[::-1])
+'''
